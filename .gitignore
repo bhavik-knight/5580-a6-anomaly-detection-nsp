@@ -208,7 +208,7 @@ __marimo__/
 
 
 # data
-data/
+data/*.csv
 
 # code editors
 .code/
