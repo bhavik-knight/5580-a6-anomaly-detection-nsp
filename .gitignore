@@ -217,7 +217,7 @@ data/*.csv
 .idea/
 
 # Output files (keep structure, ignore contents)
-output/*.png
-output/*.csv
-output/*.html
+#output/*.png
+#output/*.csv
+#output/*.html
 !output/.gitkeep
