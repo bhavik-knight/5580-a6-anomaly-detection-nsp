@@ -221,3 +221,5 @@ data/*.csv
 #output/*.csv
 #output/*.html
 !output/.gitkeep
+create_*.py
+*executed*.ipynb
