@@ -69,11 +69,11 @@ Build forecasting models (Prophet & LSTM) and anomaly detection systems for Nova
 #### Results (MAE by Region)
 | Region | MAE | RMSE | MAPE |
 |--------|-----|------|------|
-| Annapolis Valley | 21.75 | - | - |
-| Cape Breton | 38.53 | - | - |
-| Halifax | 97.52 | - | - |
-| Pictou County | 13.55 | - | - |
-| South Shore | 17.93 | - | - |
+| Annapolis Valley | 21.75 | 48.54 | 29.29 |
+| Cape Breton | 38.53 | 83.65 | 32.51 |
+| Halifax | 97.52 | 214.45 | 66.20 |
+| Pictou County | 13.55 | 28.65 | 43.04 |
+| South Shore | 17.93 | 39.14 | 39.30 |
 
 ### Model 2: LSTM (PyTorch)
 
@@ -102,11 +102,11 @@ Build forecasting models (Prophet & LSTM) and anomaly detection systems for Nova
 #### Results (MAE by Region)
 | Region | MAE | RMSE | MAPE |
 |--------|-----|------|------|
-| Annapolis Valley | 21.35 | - | - |
-| Cape Breton | 36.15 | - | - |
-| Halifax | 101.81 | - | - |
-| Pictou County | 11.33 | - | - |
-| South Shore | 15.98 | - | - |
+| Annapolis Valley | 21.35 | 49.62 | 28.39 |
+| Cape Breton | 36.15 | 81.54 | 30.72 |
+| Halifax | 101.81 | 217.17 | 67.98 |
+| Pictou County | 11.33 | 28.10 | 38.42 |
+| South Shore | 15.98 | 38.44 | 38.66 |
 
 ### Model Comparison
 **Best Model by Region (Lowest MAE):**
