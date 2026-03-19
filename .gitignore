@@ -210,6 +210,8 @@ __marimo__/
 # data
 data/*.csv
 
+output/engineered_features.csv
+
 # code editors
 .code/
 .idea/
