@@ -51,6 +51,29 @@ Build forecasting models (Prophet & LSTM) and anomaly detection systems for Nova
 - These features are available from historical data, so they support realistic forecasting without future leakage.
 - In short, the feature set was chosen to capture **autocorrelation, trend, seasonality, weather effects, and operational context** while avoiding future information leakage.
 
+### Assignment-Aligned Rationale
+According to the assignment guidance on feature engineering, the forecasting feature set was designed to support the following goals:
+
+- **Lag features: capture autocorrelation and temporal dependencies**
+   - `consumption_kwh_lag_1h`: captures short-term patterns from the previous hour
+   - `consumption_kwh_lag_24h`: captures daily cycles and same-hour behavior from the previous day
+   - `rolling_mean_168h`: adds weekly smoothing, matching the assignment’s recommendation for longer-term context
+
+- **Rolling statistics: capture trends and volatility**
+   - `rolling_mean_168h`: smooths short-term noise over a 7-day window
+   - `rolling_std_24h`: captures changes in volatility and sudden demand swings
+
+- **Calendar features: seasonal and cyclic patterns**
+   - `hour`, `day_of_week`: model daily and weekly usage cycles
+   - `is_weekend`, `is_holiday`: capture special-day demand shifts and routine changes
+
+- **External variables (weather): exogenous factors**
+   - `temperature_c`, `humidity_pct`: capture weather impact on electricity demand
+   - `hdd` (Heating Degree Days): models the heating effect when temperatures drop
+
+- **Grid features: system state**
+   - `renewable_pct`, `grid_load_pct`: add grid dynamics and operational context that can influence consumption patterns
+
 ---
 
 ## 3. FORECASTING MODELS
