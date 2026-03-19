@@ -79,7 +79,9 @@ Build forecasting models (Prophet & LSTM) and anomaly detection systems for Nova
 
 #### Architecture
 - **Type:** Multivariate LSTM
-- **Layers:** 1 LSTM layer (64 hidden units) + Dense output
+- **Layers:** `nn.LSTM(input_size, hidden_size, num_layers, dropout=dropout, batch_first=True)` + `nn.Linear(hidden_size, 1)` output layer
+- **Actual training configuration:** 1 LSTM layer with 50 hidden units
+- **Default class signature:** `hidden_size=100`, `num_layers=2`, `dropout=0.2`
 - **Sequence Length:** 24 hours
 - **Features used (12 total):**
   - consumption_kwh (target)
@@ -98,6 +100,8 @@ Build forecasting models (Prophet & LSTM) and anomaly detection systems for Nova
 - Optimizer: Adam (lr=0.001)
 - Loss: MSE
 - Memory optimization: Batch processing with cache clearing
+- **Input size:** 12 features
+- **Batch format:** `batch_first=True`
 
 #### Results (MAE by Region)
 | Region | MAE | RMSE | MAPE |
@@ -135,6 +139,8 @@ Build forecasting models (Prophet & LSTM) and anomaly detection systems for Nova
 3. **Isolation Forest** (2.00% detection rate)
    - ML-based method that considers multiple features
    - Best for complex multivariate anomalies
+   - Parameters: `contamination=0.02`, `random_state=42`, `n_estimators=100`
+   - Applied per region using 9 features: `consumption_kwh`, `consumption_kwh_lag_1h`, `consumption_kwh_lag_24h`, `rolling_mean_168h`, `rolling_std_24h`, `temperature_c`, `humidity_pct`, `hour`, `day_of_week`
 
 ### Key Findings
 - **Total anomalies detected by individual methods:** 17,716 method hits
