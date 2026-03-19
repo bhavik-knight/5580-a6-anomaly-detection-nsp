@@ -121,6 +121,7 @@ According to the assignment guidance on feature engineering, the forecasting fea
 - **Layers:** `nn.LSTM(input_size, hidden_size, num_layers, dropout=dropout, batch_first=True)` + `nn.Linear(hidden_size, 1)` output layer
 - **Actual training configuration:** 1 LSTM layer with 50 hidden units
 - **Default class signature:** `hidden_size=100`, `num_layers=2`, `dropout=0.2`
+- **Activation functions:** built-in LSTM gates use sigmoid and tanh; the final output layer is linear with no extra activation
 - **Sequence Length:** 24 hours
 - **Features used (12 total):**
   - consumption_kwh (target)
