@@ -133,13 +133,16 @@ Build forecasting models (Prophet & LSTM) and anomaly detection systems for Nova
 
 **Purpose:** Visualize and compare forecast performance in Tableau
 
-### File 2: anomaly_results.csv (In Progress)
-**Planned Columns:** timestamp, region, consumption_kwh, anomaly_flag, anomaly_type, anomaly_method
+### File 2: anomaly_results.csv
+**Columns:** timestamp, region, consumption_kwh, anomaly_flag, anomaly_type, anomaly_method
 
-**Detection Methods Implemented:**
-1. Z-Score Method (threshold: |z| > 3)
-2. IQR Method (threshold: Q1-1.5×IQR, Q3+1.5×IQR)
-3. Isolation Forest (in progress)
+**Content:**
+- Combined Z-Score, IQR, and Isolation Forest anomaly results
+- Total rows: 438,240
+- All 5 regions
+- High-confidence anomalies flagged for Tableau comparison
+
+**Purpose:** Visualize anomaly patterns and method overlap in Tableau
 
 ---
 
@@ -229,12 +232,15 @@ project/
 - Error metrics are reasonable for production use
 - Uncertainty intervals provided for both models
 
+### Anomaly Detection Performance
+- **Z-Score** identified 3,373 anomalies
+- **IQR** identified 6,596 anomalies
+- **Isolation Forest** identified 8,765 anomalies
+- **High-confidence overlap** flagged 4,412 anomalies detected by 2+ methods
+- `anomaly_results.csv` is exported and ready for Tableau
+
 ### Next Steps
-1. Complete anomaly detection implementation
-   - Isolation Forest (ML-based)
-   - Comparison with existing labels
-2. Generate `anomaly_results.csv` for Tableau
-3. Create final presentation with:
+1. Create final presentation with:
    - Model comparison visualizations
    - Regional performance analysis
    - Recommendations for deployment
@@ -248,21 +254,24 @@ project/
 ✅ LSTM Forecasting (multivariate, PyTorch)
 ✅ Multiple regions (all 5 regions)
 ✅ Model comparison (metrics, visualizations)
-✅ Tableau exports (forecast_results.csv)
-⏳ Anomaly Detection (in progress - Z-Score, IQR implemented)
-⏳ Anomaly export for Tableau (next)
+✅ Tableau exports (`forecast_results.csv` and `anomaly_results.csv`)
+✅ Anomaly Detection (Z-Score, IQR, Isolation Forest)
+✅ Anomaly export for Tableau
 
 ---
 
 ## 10. REPOSITORY STATE
 
-### Current Branch: `feature/anomaly-detection`
+### Current Branch: `main`
 ### Latest Commits:
-- Initialize anomaly detection notebook with data loading
-- Complete: 60/20/20 split on full dataset - Prophet and LSTM for all regions
-- Add Prophet and LSTM to forecast_results.csv
+```text
+- Update README and project summary
+- Merge feature/eda into main
+- Add Isolation Forest and create Tableau anomaly export
+```
 
 ### Files Ready for Presentation:
 - All forecast metrics and visualizations in `output/`
 - Jupyter notebooks with complete workflow
 - Combined forecast export for Tableau dashboard
+- Final anomaly export for Tableau dashboard
