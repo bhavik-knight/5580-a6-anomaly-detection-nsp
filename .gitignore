@@ -1,4 +1,4 @@
-# Byte-compiled / optimized / DLL files
+x`# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
 *$py.class
@@ -77,8 +77,6 @@ target/
 
 # Jupyter Notebook
 .ipynb_checkpoints
-*-checkpoint.ipynb
-*executed*.ipynb
 
 # IPython
 profile_default/
@@ -212,12 +210,8 @@ __marimo__/
 # data
 data/*.csv
 
+output/engineered_features.csv
+
 # code editors
 .code/
 .idea/
-
-# Output files (keep structure, ignore contents)
-#output/*.png
-#output/*.csv
-#output/*.html
-!output/.gitkeep
