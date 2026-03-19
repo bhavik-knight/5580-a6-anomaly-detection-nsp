@@ -52,6 +52,12 @@ Build forecasting models (Prophet & LSTM) and anomaly detection systems for Nova
 - **Test:** 20%
 - Applied to full dataset (all 10 years of data)
 
+### Forecasting Horizon
+- **Prophet:** forecasts the full held-out test split for each region, which is roughly the last 20% of the timeline (about 2 years of hourly data per region)
+- **LSTM:** uses a 24-hour lookback window and predicts the next hour at each step, repeated across the test split
+- **Lookback window:** 24 hours
+- **Prediction step:** 1 hour ahead for LSTM
+
 ### Model 1: Prophet (Facebook Prophet)
 
 #### Configuration
