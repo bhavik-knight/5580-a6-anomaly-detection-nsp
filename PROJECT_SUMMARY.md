@@ -120,42 +120,39 @@ Build forecasting models (Prophet & LSTM) and anomaly detection systems for Nova
 
 ---
 
-## 4. OUTPUTS FOR TABLEAU DASHBOARD
+## 4. ANOMALY DETECTION
 
-### File 1: forecast_results.csv
-**Columns:** ds, yhat, yhat_lower, yhat_upper, model, region
+### Detection Methods Implemented
 
-**Content:**
-- Combined Prophet + LSTM forecasts
-- Total rows: 175,275
-- All 5 regions
-- Both models for comparison
+1. **Z-Score Method** (0.77% detection rate)
+   - Most conservative, flags only extreme outliers
+   - Best for identifying severe consumption spikes
 
-**Purpose:** Visualize and compare forecast performance in Tableau
+2. **IQR Method** (1.51% detection rate)
+   - Moderate sensitivity and robust to distribution shape
+   - Best for general outlier detection
 
-### File 2: anomaly_results.csv
-**Columns:** timestamp, region, consumption_kwh, anomaly_flag, anomaly_type, anomaly_method
+3. **Isolation Forest** (2.00% detection rate)
+   - ML-based method that considers multiple features
+   - Best for complex multivariate anomalies
 
-**Content:**
-- Combined Z-Score, IQR, and Isolation Forest anomaly results
-- Total rows: 438,240
-- All 5 regions
-- High-confidence anomalies flagged for Tableau comparison
+### Key Findings
+- **Total anomalies detected by individual methods:** 17,716 method hits
+- **High-confidence anomalies (2+ methods):** 4,412 (1.01% of dataset)
+- **Existing labels validation:** 9,052 pre-labeled anomalies (2.07%) used as reference
 
-**Purpose:** Visualize anomaly patterns and method overlap in Tableau
+### High-Confidence Consensus
+"High-confidence" means an observation was flagged by **2 or more** anomaly detection methods. This consensus approach reduces false positives and prioritizes points where multiple methods agree.
 
-### Anomaly Techniques and Results
-| Technique | Rule / Setup | Anomalies | Rate |
-|-----------|--------------|-----------|------|
-| Z-Score | `|z| > 3` per region | 3,373 | 0.77% |
-| IQR | `Q1 - 1.5×IQR` / `Q3 + 1.5×IQR` per region | 6,596 | 1.51% |
-| Isolation Forest | Multivariate features, contamination = 0.02 | 8,765 | 2.00% |
-| High-confidence consensus | Detected by 2+ methods | 4,412 | 1.01% |
+### Exported Artifact
+- **File:** `output/anomaly_results.csv`
+- **Columns:** `timestamp`, `region`, `consumption_kwh`, `anomaly_flag`, `anomaly_type`, `anomaly_method`
+- **Content:** High-confidence anomalies with method-overlap labels for downstream analysis
 
-### Export Fields
-- `anomaly_flag`: 1 for high-confidence anomalies, 0 otherwise
-- `anomaly_type`: `High Confidence`, `Single Method`, or `Normal`
-- `anomaly_method`: method overlap labels such as `Z-Score, IQR`
+### Recommendations
+1. **High-confidence anomalies:** Focus on points flagged by 2+ methods
+2. **Investigation priority:** Review Isolation Forest + IQR overlap first
+3. **Model comparison:** Use with `forecast_results.csv` to inspect prediction errors at anomaly points
 
 ---
 
