@@ -42,6 +42,14 @@ Build forecasting models (Prophet & LSTM) and anomaly detection systems for Nova
 - **File:** `output/engineered_features.csv` (73MB, not tracked in git)
 - **Columns:** 38 features total
 
+### Why These Features Were Selected
+- **Lag features** capture short-term autocorrelation, since electricity usage at the next hour is strongly related to recent usage.
+- **Rolling statistics** capture local trend and variability over daily and weekly windows.
+- **Weather variables** reflect heating and cooling demand, which directly affects electricity consumption.
+- **Time features** capture repeating hourly, daily, and weekly seasonality patterns.
+- **Grid and renewable features** provide operational context that can influence demand patterns.
+- These features are available from historical data, so they support realistic forecasting without future leakage.
+
 ---
 
 ## 3. FORECASTING MODELS
