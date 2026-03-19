@@ -186,6 +186,18 @@ According to the assignment guidance on feature engineering, the forecasting fea
 - **High-confidence anomalies (2+ methods):** 4,412 (1.01% of dataset)
 - **Existing labels validation:** 9,052 pre-labeled anomalies (2.07%) used as reference
 
+### Region-Wise Anomaly Results
+Anomaly detection was applied **per region** so each region had its own baseline. The final export then combines all regions into a single file for reporting and visualization.
+
+| Region | Records | High-Confidence Anomalies | Rate |
+|--------|---------|---------------------------|------|
+| Annapolis Valley | 87,648 | 845 | 0.96% |
+| Cape Breton | 87,648 | 988 | 1.13% |
+| Halifax | 87,648 | 914 | 1.04% |
+| Pictou County | 87,648 | 800 | 0.91% |
+| South Shore | 87,648 | 865 | 0.99% |
+| **Overall** | **438,240** | **4,412** | **1.01%** |
+
 ### High-Confidence Consensus
 "High-confidence" means an observation was flagged by **2 or more** anomaly detection methods. This consensus approach reduces false positives and prioritizes points where multiple methods agree.
 
