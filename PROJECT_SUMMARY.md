@@ -49,6 +49,7 @@ Build forecasting models (Prophet & LSTM) and anomaly detection systems for Nova
 - **Time features** capture repeating hourly, daily, and weekly seasonality patterns.
 - **Grid and renewable features** provide operational context that can influence demand patterns.
 - These features are available from historical data, so they support realistic forecasting without future leakage.
+- In short, the feature set was chosen to capture **autocorrelation, trend, seasonality, weather effects, and operational context** while avoiding future information leakage.
 
 ---
 
@@ -65,6 +66,7 @@ Build forecasting models (Prophet & LSTM) and anomaly detection systems for Nova
 - **LSTM:** uses a 24-hour lookback window and predicts the next hour at each step, repeated across the test split
 - **Lookback window:** 24 hours
 - **Prediction step:** 1 hour ahead for LSTM
+- **Short version:** Prophet forecasts about **2 years ahead in the held-out test period** per region, while LSTM makes **1-hour-ahead predictions** using the previous **24 hours** as context
 
 ### Model 1: Prophet (Facebook Prophet)
 
