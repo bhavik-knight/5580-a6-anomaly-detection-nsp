@@ -144,6 +144,19 @@ Build forecasting models (Prophet & LSTM) and anomaly detection systems for Nova
 
 **Purpose:** Visualize anomaly patterns and method overlap in Tableau
 
+### Anomaly Techniques and Results
+| Technique | Rule / Setup | Anomalies | Rate |
+|-----------|--------------|-----------|------|
+| Z-Score | `|z| > 3` per region | 3,373 | 0.77% |
+| IQR | `Q1 - 1.5×IQR` / `Q3 + 1.5×IQR` per region | 6,596 | 1.51% |
+| Isolation Forest | Multivariate features, contamination = 0.02 | 8,765 | 2.00% |
+| High-confidence consensus | Detected by 2+ methods | 4,412 | 1.01% |
+
+### Export Fields
+- `anomaly_flag`: 1 for high-confidence anomalies, 0 otherwise
+- `anomaly_type`: `High Confidence`, `Single Method`, or `Normal`
+- `anomaly_method`: method overlap labels such as `Z-Score, IQR`
+
 ---
 
 ## 5. TECHNICAL IMPLEMENTATION DETAILS
