@@ -1,0 +1,28 @@
+\section{Forecasting Methodology (Task 2A)}
+
+\subsection{Modeling strategy}
+Two forecasting approaches were evaluated for 7-day operational planning support:
+\begin{itemize}
+	\item \textbf{Prophet}: additive/multiplicative seasonality with exogenous regressors.
+	\item \textbf{Advanced-LSTM-Optuna}: multivariate sequence learning with lag, rolling, weather, and calendar features, tuned with Optuna.
+\end{itemize}
+
+Hyperparameter tuning used an Optuna-style search process to improve generalization and reduce regional under/over-fitting. Tuning targets included sequence configuration, hidden dimension, learning rate, and regularization-related settings.
+
+For each region, data was sorted chronologically and split into train/test windows to preserve temporal causality. This avoids leakage from future observations and better reflects real operational deployment, where future load values are unavailable at prediction time. All comparisons were performed on aligned test horizons to keep MAE, RMSE, and MAPE directly comparable.
+
+\subsection{Forecast metrics comparison}
+Forecast quality was compared using MAE, RMSE, and MAPE by region.
+
+Expanded metric details are also provided in the appendix (see \autoref{tab:app_forecast_metrics}), while extended visual diagnostics are included in \autoref{fig:app_anomaly_intermediate} and \autoref{fig:app_tier12_compare}.
+
+A direct forecast comparison plot (actual vs Prophet vs Advanced-LSTM-Optuna) is provided in \autoref{fig:app_forecast_plot}.
+
+Metric interpretation follows complementary roles: MAE captures average absolute miss, RMSE emphasizes large misses, and MAPE provides scale-normalized interpretability for cross-region discussion. Using all three prevents over-optimizing one behavior (e.g., average error) at the expense of tail-risk behavior that matters for peak operations.
+
+\subsection{Business interpretation}
+The neural model outperformed Prophet in four regions, while Prophet remained stronger in Halifax. This indicates that NSPI should adopt region-specific model champions, rather than enforcing a single forecasting model across all geographies.
+
+Related feature-space diagnostics that inform model behavior are provided in \autoref{fig:app_feature_corr}, \autoref{fig:app_feat_imp_25}, and \autoref{fig:app_feat_imp_30}.
+
+Operationally, this supports a champion-challenger governance model: maintain one selected production model per region, but continuously benchmark alternatives as demand behavior evolves seasonally. This approach balances reliability, maintainability, and model performance over time.

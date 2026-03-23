@@ -1,0 +1,41 @@
+\section{Anomaly Detection (Task 2B)}
+
+\subsection{4-Tier ensemble design}
+Anomaly detection uses a layered ensemble to capture complementary abnormality types:
+\begin{itemize}
+	\item \textbf{Z-Score}: global spikes,
+	\item \textbf{IQR}: robust outliers,
+	\item \textbf{Isolation Forest}: contextual anomalies,
+	\item \textbf{LSTM Autoencoder}: temporal anomalies.
+\end{itemize}
+
+The design intentionally combines statistical, distributional, contextual, and temporal detectors. Single-method systems often produce unstable alert streams under changing weather and load regimes; ensemble diversity helps maintain alert quality when one detector becomes locally less reliable.
+
+\subsection{Mathematical definitions}
+Z-score:
+\[
+z = \frac{x - \mu}{\sigma}
+\]
+
+Autoencoder reconstruction loss:
+\[
+\mathrm{MSE} = \frac{1}{n}\sum_{i=1}^{n}(x_i - \hat{x}_i)^2
+\]
+
+\subsection{Calibration and consensus}
+Method outputs were harmonized with a shared target anomaly rate for Isolation Forest contamination and autoencoder fallback quantiles. Autoencoder thresholds use median-plus-MAD first, then quantile fallback when rates move outside the operational band.
+
+This calibration strategy controls alert-volume drift across regions and periods. In practice, operations teams need predictable alert volumes to avoid triage overload; bounded calibration keeps the system actionable while preserving sensitivity to meaningful deviations.
+
+Final escalation uses a high-confidence consensus rule:
+\begin{itemize}
+	\item \textbf{Anomaly flag = True} when two or more methods agree.
+\end{itemize}
+This reduces false positives and improves triage.
+
+\subsection{Validation}
+Detected anomalies were compared against \texttt{anomaly\_flag}. Consensus alerts improved precision over single-method triggers while keeping useful recall.
+
+Validation was treated as operational rather than purely academic: the objective is to surface incidents worth investigation, not to maximize raw anomaly counts. Consensus rules therefore prioritize higher-confidence incidents for dispatch and root-cause analysis.
+
+For supporting visuals, see the appendix: final 4-method comparison in \autoref{fig:app_anomaly_4method}, training diagnostics in \autoref{fig:app_ae_loss}, and reconstruction diagnostics in \autoref{fig:app_ae_reconstruction}. Aggregated method totals are summarized in \autoref{tab:app_global_method_summary} and \autoref{tab:app_region_method_summary}.

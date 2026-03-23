@@ -1,0 +1,37 @@
+\section*{Abstract / Executive Summary}
+\addcontentsline{toc}{section}{Abstract / Executive Summary}
+
+Nova Scotia Power (NSPI) is operating in a period of demand volatility driven by electrification, weather variability, and shifting load behavior. This report presents an integrated workflow combining regional forecasting and consensus-based anomaly detection to improve planning confidence and operational triage.
+
+\section{Data Exploration \& Engineering}
+\label{sec:1_introduction}
+
+We analyze 438,240 hourly records (2015--2024) across Annapolis Valley, Cape Breton, Halifax, Pictou County, and South Shore. Inputs combine demand, weather, and calendar context.
+
+\subsection{Dataset profile}
+The dataset covers roughly 2015--2024 (hourly) for Annapolis Valley, Cape Breton, Halifax, Pictou County, and South Shore. Demand, weather, and calendar context are integrated; all models are evaluated per region.
+
+Regional heterogeneity is substantial. Halifax carries the largest load amplitude and stronger peak patterns, while other regions present lower baselines but sharper relative excursions during weather events. This makes pooled global baselines less reliable for operations and justifies region-wise model fitting and evaluation.
+
+\subsection{Data quality handling}
+Preparation focused on reliability:
+\begin{itemize}
+	\item dropped invalid timestamps and missing region IDs,
+	\item standardized numeric fields,
+	\item filled missing values with region-aware interpolation/means,
+	\item retained outliers for anomaly analysis.
+\end{itemize}
+
+This preprocessing strategy preserves operational signal instead of over-smoothing the data. In power-system monitoring, rare spikes are often the events of interest; removing them during cleaning can hide reliability-relevant behavior and reduce downstream detection sensitivity.
+
+\subsection{Feature engineering}
+Features capture autocorrelation, trend, volatility, weather, and seasonality:
+\begin{itemize}
+	\item \textbf{Lag features:} \texttt{consumption\_kwh\_lag\_1h}, \texttt{consumption\_kwh\_lag\_24h}
+	\item \textbf{Rolling statistics:} \texttt{rolling\_mean\_168h}, \texttt{rolling\_std\_24h}
+	\item \textbf{Weather/time bins:} temperature, humidity, hour, day-of-week, weekend/holiday indicators
+\end{itemize}
+
+Detailed diagnostics are in the appendix (\autoref{fig:app_feature_corr}, \autoref{fig:app_feat_imp_25}, \autoref{fig:app_feat_imp_30}).
+
+From a forecasting perspective, lag and rolling terms stabilize short-horizon predictions by providing persistence and local-trend context. From an anomaly perspective, volatility and weather-linked variables improve contextual interpretation (for example, separating demand spikes caused by weather stress from potentially abnormal load behavior).

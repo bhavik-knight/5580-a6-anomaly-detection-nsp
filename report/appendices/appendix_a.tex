@@ -1,0 +1,103 @@
+\section[Appendix]{Appendix}
+\label{sec:app_a}
+
+\subsection{Project Repository}
+\href{https://github.com/bhavik-knight/5580-a6-anomaly-detection-nsp}{GitHub repository}
+
+\subsection{Supplementary Tables}
+\input{tables/table_forecast_metrics}
+\input{tables/table_global_method_summary}
+\input{tables/table_region_method_summary}
+
+\subsection{Supplementary Figures from Modeling Outputs}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\textwidth]{figures/forecast_plot.png}
+\caption{Forecast comparison of actual consumption vs Prophet and Advanced-LSTM-Optuna (test horizon).}
+\label{fig:app_forecast_plot}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\textwidth]{figures/anomaly_detection_rate_4method_comparison.png}
+\caption{Final 4-method anomaly detection rate comparison.}
+\label{fig:app_anomaly_4method}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{figures/ae_training_loss_curve.png}
+\caption{Autoencoder training loss curves across regions.}
+\label{fig:app_ae_loss}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{figures/ae_original_vs_reconstructed.png}
+\caption{Autoencoder reconstruction example for highest-error sequence window.}
+\label{fig:app_ae_reconstruction}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{figures/anomaly_detection_rate_comparison.png}
+\caption{Intermediate anomaly detection rate comparison.}
+\label{fig:app_anomaly_intermediate}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{figures/tier12_detection_rate_comparison.png}
+\caption{Tier 1 and Tier 2 detector comparison (pre-autoencoder).}
+\label{fig:app_tier12_compare}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{figures/Feature_Correlation_Heatmap.png}
+\caption{Feature correlation heatmap from engineered feature space.}
+\label{fig:app_feature_corr}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{figures/feature_importance_plot_25.png}
+\caption{Feature importance output (configuration 25).}
+\label{fig:app_feat_imp_25}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{figures/feature_importance_plot_30.png}
+\caption{Feature importance output (configuration 30).}
+\label{fig:app_feat_imp_30}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{figures/customer_vs_consumption.png}
+\caption{Customer-type versus consumption relationship.}
+\label{fig:app_customer_vs_consumption}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{figures/hour_vs_consumption.png}
+\caption{Hourly consumption pattern visualization.}
+\label{fig:app_hour_vs_consumption}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{figures/temp_vs_consumption.png}
+\caption{Temperature versus consumption relationship.}
+\label{fig:app_temp_vs_consumption}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\textwidth]{figures/pair_plot.png}
+\caption{Multivariate pair plot used for exploratory assessment.}
+\label{fig:app_pair_plot}
+\end{figure}

@@ -1,0 +1,46 @@
+\section{Conclusion \& Recommendations}
+
+This project delivers an end-to-end NSPI workflow from engineered features to forecasting and explainable anomaly detection. Forecast outputs support planning, while consensus anomaly alerts support operational triage.
+
+\subsection{Key conclusions}
+\begin{itemize}
+	\item Regional demand behavior differs enough to require region-specific models.
+	\item Neural forecasting leads in most regions; Prophet remains competitive in Halifax.
+	\item The 4-method ensemble captures complementary anomaly patterns.
+	\item Consensus alerts (2+ methods) reduce false positives and improve actionability.
+\end{itemize}
+
+\subsection{Recommendations for NSPI}
+\begin{enumerate}
+	\item Use region-specific forecast champions selected by local MAE/RMSE/MAPE.
+	\item Use consensus anomaly flags as the default operational alert threshold.
+	\item Prioritize incidents where contextual and temporal detectors agree.
+	\item Recalibrate thresholds seasonally to keep alert volumes stable.
+	\item Continue validating model outputs against labels and field outcomes.
+\end{enumerate}
+
+Implementation can follow a phased rollout: first deploy dashboarding with existing outputs, then operationalize consensus thresholds for alerting, and finally establish periodic retraining/calibration windows. This creates a manageable adoption path with measurable reliability improvements at each stage.
+
+\subsection{Operational rollout roadmap}
+A practical rollout can be organized into three stages:
+\begin{itemize}
+	\item \textbf{Stage 1 -- Visibility}: publish Tableau dashboards using the current exported datasets and establish weekly monitoring reviews.
+	\item \textbf{Stage 2 -- Controlled alerting}: enable consensus-based anomaly escalation for analyst triage with clear escalation playbooks.
+	\item \textbf{Stage 3 -- Continuous improvement}: schedule retraining, threshold recalibration, and periodic backtesting against new operational outcomes.
+\end{itemize}
+
+This phased approach reduces change risk while providing immediate value. It also supports auditability because each stage has a clear data source, evaluation checkpoint, and ownership model.
+
+\subsection{Limitations and future work}
+The current system is strong for short-horizon planning and operational anomaly triage, but several enhancements can improve production readiness: richer external regressors (storm alerts and outage feeds), explicit probabilistic forecasting intervals, and event-level postmortem labels to strengthen validation quality.
+
+Future work should also evaluate lead-time sensitivity (how early anomalies are detected before major events) and intervention utility (how many alerts produce actionable preventive decisions). These two dimensions are critical for measuring business value beyond traditional model-fit metrics.
+
+These actions provide a practical path to preserve reliability while supporting NSPI's clean-energy transition.
+
+
+
+
+
+
+

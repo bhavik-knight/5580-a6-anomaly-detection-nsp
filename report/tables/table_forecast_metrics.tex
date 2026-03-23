@@ -1,0 +1,18 @@
+\begin{table}[H]
+\centering
+\caption{Forecasting metrics by region and model (latest notebook run)}
+\label{tab:app_forecast_metrics}
+\begin{tabular}{lccc|ccc}
+\toprule
+\multirow{2}{*}{Region} & \multicolumn{3}{c|}{Prophet} & \multicolumn{3}{c}{Advanced-LSTM-Optuna} \\
+\cmidrule(lr){2-4} \cmidrule(lr){5-7}
+& MAE & RMSE & MAPE (\%) & MAE & RMSE & MAPE (\%) \\
+\midrule
+Annapolis Valley & 20.16 & 48.99 & 22.00 & 25.43 & 52.22 & 26.00 \\
+Cape Breton      & 36.36 & 85.21 & 20.00 & 45.70 & 91.09 & 21.00 \\
+Halifax          & 93.99 & 213.15 & 23.00 & 131.58 & 238.77 & 25.00 \\
+Pictou County    & 12.56 & 28.13 & 28.00 & 18.69 & 32.20 & 37.00 \\
+South Shore      & 17.07 & 39.34 & 27.00 & 20.83 & 41.97 & 33.00 \\
+\bottomrule
+\end{tabular}
+\end{table}

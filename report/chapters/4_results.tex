@@ -1,0 +1,43 @@
+\section{Tableau Insights}
+
+\subsection{Dashboard layout strategy}
+The dashboard is structured for fast escalation from overview to incident details:
+\begin{itemize}
+	\item KPI summary (total, consensus, anomaly rate),
+	\item region-method heatmap and trend slices,
+	\item method comparison across the four detectors,
+	\item row-level drill-down with method votes and consensus.
+\end{itemize}
+
+The layout supports two user personas. Executives use KPI and trend panels to assess system-level risk posture, while analysts and operators use drill-down views to inspect specific timestamps, regions, and detector agreement patterns.
+
+\subsection{Business value for NSPI}
+This layout supports faster reliability decisions by helping teams:
+\begin{itemize}
+	\item prioritize high-volatility regions,
+	\item track peak/weather stress concentration,
+	\item separate weak alerts from high-confidence consensus events.
+\end{itemize}
+
+In practice, this improves prioritization discipline. Incidents with multi-method agreement and high local concentration can be elevated quickly, while isolated single-detector events can be monitored before costly intervention.
+
+\subsection{Explainable AI tooltips}
+Tooltips expose triggering methods, vote counts, and anomaly context so operators can quickly understand \emph{why} a point was flagged.
+
+\subsection{Published data products}
+The Tableau pipeline uses:
+\begin{itemize}
+	\item \texttt{anomaly\_results.csv}
+	\item \texttt{autoencoder\_results.csv}
+	\item \texttt{region\_method\_summary.csv}
+	\item \texttt{global\_method\_summary.csv}
+\end{itemize}
+
+These outputs support both incident triage and executive monitoring.
+
+The split between row-level and aggregate products is intentional: row-level outputs support forensic analysis and reproducibility, while aggregate products provide concise trend communication for recurring operational reviews.
+
+Additional drill-down visuals are in the appendix: \autoref{fig:app_customer_vs_consumption}, \autoref{fig:app_hour_vs_consumption}, \autoref{fig:app_temp_vs_consumption}, and \autoref{fig:app_pair_plot}.
+
+
+These outputs support both incident triage and executive monitoring.
